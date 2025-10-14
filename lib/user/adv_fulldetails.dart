@@ -1,3 +1,4 @@
+import 'package:advocatebooking/user/feedback.dart';
 import 'package:advocatebooking/user/registration.dart';
 import 'package:advocatebooking/user/view_adv.dart';
 import 'package:dio/dio.dart';
@@ -61,17 +62,17 @@ class _adv_fullviewState extends State<adv_fullview> {
               ),
               const SizedBox(height: 20),
 
-              // Only Google Meet button
-              // Center(
-              //   child: CircleAvatar(
-              //     radius: 20,
-              //     backgroundColor: Colors.blue,
-              //     child: IconButton(
-              //       onPressed: openGoogleMeet,
-              //       icon: Icon(Icons.video_call, color: Colors.white, size: 18),
-              //     ),
-              //   ),
-              // ),
+             
+              Center(
+                child: CircleAvatar(
+                  radius: 20,
+                  backgroundColor: Colors.blue,
+                  child: IconButton(
+                    onPressed: openGoogleMeet,
+                    icon: Icon(Icons.video_call, color: Colors.white, size: 18),
+                  ),
+                ),
+              ),
               const SizedBox(height: 30),
 
               // Email
@@ -121,10 +122,10 @@ class _adv_fullviewState extends State<adv_fullview> {
               // Request Button
               Center(
                 child: ElevatedButton(
-                  onPressed: 
-                 openGoogleMeet
+                  onPressed:(){Navigator.push(context,MaterialPageRoute(builder: (context) => FeedbackPage(),));} 
+                 
                   ,
-                  child: Text('Video call', style: TextStyle(color: Colors.white)),
+                  child: Text('Feedback', style: TextStyle(color: Colors.white)),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(177, 29, 98, 17),
                     minimumSize: Size(280, 50),
