@@ -1,7 +1,6 @@
 import 'package:advocatebooking/user/case_status.dart';
-import 'package:advocatebooking/user/chat.dart'; // ✅ Import your ChatPage
+import 'package:advocatebooking/user/chat.dart';
 import 'package:advocatebooking/user/complaint.dart';
-import 'package:advocatebooking/user/feedback.dart';
 import 'package:advocatebooking/user/history.dart';
 import 'package:advocatebooking/user/login.dart';
 import 'package:advocatebooking/user/view_adv.dart';
@@ -64,7 +63,6 @@ class Home_page extends StatelessWidget {
             icon: const Icon(Icons.chat_bubble, color: Colors.white),
             tooltip: 'Chat with Gemini',
           ),
-
           IconButton(
             onPressed: () {
               logout(context);
@@ -92,238 +90,94 @@ class Home_page extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const SizedBox(height: 80),
+                  // Row 1: Advocates & Case History
                   Row(
                     children: [
-                      Container(
-                        height: 200,
-                        width: 170,
-                        child: Card(
-                          color: const Color.fromARGB(231, 50, 74, 163),
-                          elevation: 8,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => view_adv(),
-                                ),
-                              );
-                            },
-                            borderRadius: BorderRadius.circular(20),
-                            child: Padding(
-                              padding: const EdgeInsets.all(30),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
-                                  Icon(
-                                    Icons.groups_rounded,
-                                    size: 80,
-                                    color: Colors.white,
-                                  ),
-                                  SizedBox(height: 10),
-                                  Text(
-                                    'Advocates',
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
+                      buildCard(
+                        context,
+                        icon: Icons.groups_rounded,
+                        label: 'Advocates',
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => view_adv()),
                         ),
                       ),
                       const SizedBox(width: 10),
-                      // ✅ Replaced Upload Case File with Case History
-                      Container(
-                        height: 200,
-                        width: 170,
-                        child: Card(
-                          color: const Color.fromARGB(231, 50, 74, 163),
-                          elevation: 8,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => CaseHistoryPage(),
-                                ),
-                              );
-                            },
-                            borderRadius: BorderRadius.circular(20),
-                            child: Padding(
-                              padding: const EdgeInsets.all(30),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
-                                  Icon(
-                                    Icons.history_edu,
-                                    size: 80,
-                                    color: Colors.white,
-                                  ),
-                                  SizedBox(height: 10),
-                                  Text(
-                                    'Case History',
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
+                      buildCard(
+                        context,
+                        icon: Icons.history_edu,
+                        label: 'Case History',
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => CaseHistoryPage()),
                         ),
                       ),
                     ],
                   ),
                   const SizedBox(height: 10),
+                  // Row 2: Case Status & Complaint
                   Row(
                     children: [
-                      Container(
-                        height: 200,
-                        width: 170,
-                        child: Card(
-                          color: const Color.fromARGB(231, 50, 74, 163),
-                          elevation: 8,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => case_status(),
-                                ),
-                              );
-                            },
-                            borderRadius: BorderRadius.circular(20),
-                            child: Padding(
-                              padding: const EdgeInsets.all(30),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
-                                  Icon(
-                                    Icons.auto_mode_rounded,
-                                    size: 80,
-                                    color: Colors.white,
-                                  ),
-                                  SizedBox(height: 10),
-                                  Text(
-                                    'Case Status',
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
+                      buildCard(
+                        context,
+                        icon: Icons.auto_mode_rounded,
+                        label: 'Case Status',
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => case_status()),
                         ),
                       ),
                       const SizedBox(width: 10),
-                      Container(
-                        height: 200,
-                        width: 170,
-                        child: Card(
-                          color: const Color.fromARGB(231, 50, 74, 163),
-                          elevation: 8,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => FeedbackPage(),
-                                ),
-                              );
-                            },
-                            borderRadius: BorderRadius.circular(20),
-                            child: Padding(
-                              padding: const EdgeInsets.all(30),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
-                                  Icon(
-                                    Icons.star_half,
-                                    size: 80,
-                                    color: Colors.yellow,
-                                  ),
-                                  SizedBox(height: 10),
-                                  Text(
-                                    'Feedback',
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
+                      buildCard(
+                        context,
+                        icon: Icons.comment_rounded,
+                        label: 'Complaint',
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => usr_comp()),
                         ),
                       ),
                     ],
                   ),
-                  Container(
-                    height: 200,
-                    width: 170,
-                    child: Card(
-                      color: const Color.fromARGB(231, 50, 74, 163),
-                      elevation: 8,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => usr_comp()),
-                          );
-                        },
-                        borderRadius: BorderRadius.circular(20),
-                        child: Padding(
-                          padding: const EdgeInsets.all(30),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
-                              Icon(
-                                Icons.comment_rounded,
-                                size: 80,
-                                color: Colors.white,
-                              ),
-                              SizedBox(height: 10),
-                              Text(
-                                'Complaint',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
                 ],
               ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  // Reusable card widget
+  Widget buildCard(BuildContext context, {required IconData icon, required String label, required VoidCallback onTap}) {
+    return Container(
+      height: 200,
+      width: 170,
+      child: Card(
+        color: const Color.fromARGB(231, 50, 74, 163),
+        elevation: 8,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(20),
+          child: Padding(
+            padding: const EdgeInsets.all(30),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(icon, size: 80, color: Colors.white),
+                const SizedBox(height: 10),
+                Text(
+                  label,
+                  style: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
             ),
           ),
         ),
